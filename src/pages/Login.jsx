@@ -78,7 +78,7 @@ if(isLoading) {
                 className='form-control' 
                 id='email' 
                 name='email' 
-                placeholder='Escribe tu contraseña'
+                placeholder='Escribe tu email'
                 value={email}
                     onChange={onChange}
             />
