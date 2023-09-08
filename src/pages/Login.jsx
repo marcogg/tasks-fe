@@ -66,7 +66,7 @@ if(isLoading) {
   return (
     <>
     <section className='heading'>
-        <h5><FaSignInAlt/>Registrar Login de usuario</h5>
+        <h5><FaSignInAlt/>Login de usuario</h5>
         <p>Por favor inicia sesión en la app</p>
     </section>
     <section className='form'>
