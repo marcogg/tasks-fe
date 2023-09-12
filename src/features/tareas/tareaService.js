@@ -1,7 +1,8 @@
 // LOS ARCHIVOS SERVICE SON LOS QUE INTERACTUAN DIRECTAMENTE CON MI BASE DE DATOS
 
 import axios from 'axios'
-const API_URL = 'http://.../api/tareas/'
+const API_URL = 'https://kind-pink-piranha-cuff.cyclic.app/api/tareas'
+// const API_URL = 'http://.../api/tareas/'
 
 
 // Crear una nueva tarea

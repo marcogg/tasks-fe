@@ -54,7 +54,7 @@ export const deleteTarea = createAsyncThunk('tareas/delete', async(id, thunkAPI)
 // CADA QUE CREAMOS UNA FUNCION CON THUNKAPI NECESITO UN EXTRAREDUCER
 
 export const tareaSlice = createSlice({
-    name:'auth',
+    name:'tarea',
     initialState,
     reducers:{
         reset: (state) => {

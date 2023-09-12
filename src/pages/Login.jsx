@@ -18,6 +18,12 @@ const Login = () => {
 
     const {email, password} = formData
 
+    const navigate = useNavigate()
+    const dispatch = useDispatch()
+
+    const {user, isLoading, isError, isSuccess, message} = useSelector((state)=>state.auth)
+
+
     // ONCHANGE
     const onChange = (e) => { 
         sendFormData((prevState) => ({
@@ -26,11 +32,22 @@ const Login = () => {
         }))
     }
 
-    const navigate = useNavigate()
-    const dispatch = useDispatch()
 
-    const {user, isLoading, isError, isSuccess, message} = useSelector((state)=>state.auth)
-
+    // Manejanod cuando ejecuar las funciones con UseEffect
+    useEffect(()=>{
+        if (isError) {
+            toast.error(message)
+        }
+        
+        if (isSuccess) {
+            navigate('/')
+        }
+        
+        // Reseteando los valores
+        dispatch(reset())
+        
+    }, [user, isError, isSuccess, message. navigate, dispatch])
+   
 
     // OnSubmit
     const onSubmit = (e) => {
@@ -43,21 +60,6 @@ const Login = () => {
 
         dispatch(login(userData))
     }
-
- // Manejanod cuando ejecuar las funciones con UseEffect
- useEffect(()=>{
-    if (isError) {
-        toast.error(message)
-    }
-
-    if (isSuccess) {
-        navigate('/')
-    }
-
-    // Reseteando los valores
-    dispatch(reset())
-
-}, [user, isError, isSuccess, message. navigate, dispatch])
 
 if(isLoading) {
     return <Spinner />
@@ -95,7 +97,7 @@ if(isLoading) {
             />
         </div>
         <div className='form-group'>
-            <button type='submit' className='btn btn-block'>Crear</button>
+            <button type='submit' className='btn btn-block'>Login</button>
         </div>
         </form>
     </section>
