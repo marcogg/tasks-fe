@@ -17,7 +17,7 @@ const initialState = {
 export const crearTarea = createAsyncThunk('tareas/crear', async (tareaData, thunkAPI) =>{
     try {
         const token = thunkAPI.getState().auth.user.token
-        return await tareaService.register(tareaData, token)
+        return await tareaService.crearTarea(tareaData, token)
     } catch (error) {
         const message = (error.response && error.response.data && error.response.data.message) || error.message || error.toString()
 

@@ -16,7 +16,7 @@ const TareaForm = () => {
 
     return (
     <section className="form">
-        <form onSubmit={onSubmit}></form>
+        <form onSubmit={onSubmit}>
         <div className="form-group">
             <label htmlFor='texto'>Tarea</label>
             <input type="text" name="texto" id="texto" value={texto} onChange={(e)=> setTexto(e.target.value)} />
@@ -26,6 +26,7 @@ const TareaForm = () => {
                 Agregar nueva tarea
             </button>
         </div>
+        </form>
     </section>
   )
 }
