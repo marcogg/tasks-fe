@@ -10,28 +10,28 @@ import TareaItem from "../components/TareaItem"
 
 const Dashboard = () => {
 
-const navigate = useNavigate()
-const dispatch = useDispatch()
-const {user} = useSelector((state) => state.auth)
-const {tareas, isLoading, isError, message} = useSelector((state) => state.tarea)
+  const navigate = useNavigate()
+  const dispatch = useDispatch()
+  const { user } = useSelector((state) => state.auth)
+  const { tareas, isLoading, isError, message } = useSelector((state) => state.tarea)
 
 
 useEffect(() =>{
-if (isError){
-  console.log(message)
-}
+  if (isError){
+    console.log(message)
+  }
 
-if (!user){
-  navigate('/login')
-}
+  if (!user){
+    navigate('/login')
+  }
 
-dispatch(getTareas())
+  dispatch(getTareas())
 
-return () =>{
-  dispatch(reset)
-}
+  return () =>{
+    dispatch(reset)
+  }
 
-},[user, navigate, isError, dispatch])
+},[user, navigate, isError, message, dispatch])
 
 if(isLoading) {
   return <Spinner/>
@@ -39,21 +39,22 @@ if(isLoading) {
 
   return (
     <>
-      <section>
-      {/* Aqui un operador ternario simplificado sin el equvalente del else */}
-        <div>Bienvenid@ {user && user.name}</div>
-        <p>Dashboard de tareas</p>
-        <TareaForm/>
-      </section>
-      <section className="content">
-      {tareas.length > 0 ? (
-        <div className="tarea">
-          {tareas.map((tarea) => (
-            <TareaItem key={tarea._id} tarea={tarea}/>
-          ))}
-        </div>
-        ):(<h3>No hay tareas para mostrar</h3>)}
-      </section>
+      <section className='heading'>
+                <h4>Bienvenido {user && user.name}</h4>
+                <p>Dashboard de Tareas</p>
+            </section>
+
+            <TareaForm />
+
+            <section className="content">
+                {tareas.length > 0 ? (
+                    <div className="tareas">
+                        {tareas.map((tarea) => (
+                            <TareaItem key={tarea._id} tarea={tarea} />
+                        ))}
+                    </div>
+                ) : (<h3>No hay tareas para mostrar</h3>)}
+            </section>
     </>
   )
 }
