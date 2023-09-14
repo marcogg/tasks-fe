@@ -4,6 +4,7 @@ import { useSelector, useDispatch } from "react-redux"
 import TareaForm from '../components/TareaForm'
 import Spinner from '../components/Spinner'
 import { getTareas, reset } from "../features/tareas/tareaSlice"
+import TareaItem from "../components/TareaItem"
 
 
 
@@ -40,7 +41,7 @@ if(isLoading) {
     <>
       <section>
       {/* Aqui un operador ternario simplificado sin el equvalente del else */}
-        <div>Bienvenido {user && user.name}</div>
+        <div>Bienvenid@ {user && user.name}</div>
         <p>Dashboard de tareas</p>
         <TareaForm/>
       </section>

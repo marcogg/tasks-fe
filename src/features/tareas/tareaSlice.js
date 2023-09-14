@@ -27,25 +27,23 @@ export const crearTarea = createAsyncThunk('tareas/crear', async (tareaData, thu
 
 // Obtener la lista de tareas
 // Un underscore, significa que el primer parámetro va vacío, aquí NO lo uso porque el user lo saco del token
-export const getTareas = createAsyncThunk('tareas/getAll', async(_, thunkAPI) => {
+export const getTareas = createAsyncThunk('tareas/getAll', async (_, thunkAPI) => {
     try {
         const token = thunkAPI.getState().auth.user.token
-        return await tareaService.register(tareaData, token)
+        return await tareaService.getTareas(token)
     } catch (error) {
         const message = (error.response && error.response.data && error.response.data.message) || error.message || error.toString()
-
         return thunkAPI.rejectWithValue(message)
     }
 })
 
 // Eliminar una tarea
-export const deleteTarea = createAsyncThunk('tareas/delete', async(id, thunkAPI) => {
+export const deleteTarea = createAsyncThunk('tareas/delete', async (id, thunkAPI) => {
     try {
         const token = thunkAPI.getState().auth.user.token
         return await tareaService.deleteTarea(id, token)
     } catch (error) {
         const message = (error.response && error.response.data && error.response.data.message) || error.message || error.toString()
-
         return thunkAPI.rejectWithValue(message)
     }
 })
@@ -96,7 +94,7 @@ export const tareaSlice = createSlice({
             state.isLoading = false
             state.isSuccess = true
             // Aqui, para que se actualice la página sin la tarea que acabo de borrar, hago un filter de JS Vanilla
-            state.tareas=state.tareas.filter((tarea)=>{tarea._id !== action.payload.id})
+            state.tareas = state.tareas.filter((tarea) => tarea._id !== action.payload.id)
         })
         .addCase(deleteTarea.rejected, (state, action) => {
             state.isLoading = false
